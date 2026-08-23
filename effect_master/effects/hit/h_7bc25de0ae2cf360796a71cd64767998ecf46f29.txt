@@ -1,0 +1,1 @@
+{"NormalizedName":"warmup","Description":"Just strap a radiator to your glove why don’t you","ItemID":"_hitEffectWarmUp","Category":"HitEffect","PreviewImage":"rbxassetid://126125892101489","DisplayString":"[Uncommon] 🟢 Warm Up (_hitEffectWarmUp)","Rarity":"Uncommon","Name":"Warm Up"}

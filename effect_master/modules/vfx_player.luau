@@ -1,4 +1,4 @@
-local Module = { VERSION = 15 }
+local Module = { VERSION = 16 }
 
 local Controller
 local Storage
@@ -830,6 +830,22 @@ local MODE_BY_BRANCH = {}
 for mode, branchName in pairs(BRANCH_BY_MODE) do
     MODE_BY_BRANCH[branchName] = mode
 end
+
+local function routeModeFromName(name)
+    local direct = MODE_BY_BRANCH[name]
+    if direct then return direct, true end
+
+    local upper = tostring(name or ""):upper()
+    for mode, marker in pairs(BRANCH_BY_MODE) do
+        -- Covers captures such as _HIT_EFFECT_RANDOM without confusing
+        -- normal effect IDs like _hitEffectPortal.
+        if upper:sub(1, #marker) == marker then
+            return mode, false
+        end
+    end
+    return nil, false
+end
+
 local BranchCache = setmetatable({}, { __mode = "k" })
 
 local DEFAULT_ACTIVE_DURATION = {
@@ -941,28 +957,39 @@ local function indexEffectTree(root)
     local index = {
         Branches = {},
         Depths = {},
+        Priorities = {},
         HasNamedBranch = false,
         Tree = { root },
     }
 
     local function consider(instance, depth)
-        local mode = MODE_BY_BRANCH[instance.Name]
+        local mode, exactName = routeModeFromName(instance.Name)
         if not mode then return end
+
         index.HasNamedBranch = true
-        if not index.Depths[mode] or depth < index.Depths[mode] then
+        local priority = exactName and 0 or 1
+        local oldPriority = index.Priorities[mode]
+        local oldDepth = index.Depths[mode]
+
+        if oldPriority == nil
+            or priority < oldPriority
+            or (priority == oldPriority and (oldDepth == nil or depth < oldDepth))
+        then
             index.Branches[mode] = instance
             index.Depths[mode] = depth
+            index.Priorities[mode] = priority
         end
     end
 
     consider(root, 0)
     for _, descendant in ipairs(root:GetDescendants()) do
         table_insert(index.Tree, descendant)
-        if MODE_BY_BRANCH[descendant.Name] then
+        local mode = routeModeFromName(descendant.Name)
+        if mode then
             local depth = 0
             local current = descendant
             while current and current ~= root do
-                depth = depth + 1
+                depth += 1
                 current = current.Parent
             end
             consider(descendant, depth)
@@ -982,18 +1009,31 @@ local function resolveEffectBranch(root, mode, exactOnly)
     local exact = findEffectBranch(root, mode)
     if exact then return exact, true end
 
-    -- Older captures sometimes contain only _HIT_EFFECT. Death and kill may
-    -- safely reuse that branch, but never the complete package tree.
-    if not exactOnly and (mode == "Death" or mode == "Kill") then
-        local hitFallback = findEffectBranch(root, "Hit")
-        if hitFallback then return hitFallback, false end
+    if exactOnly then return nil, false end
+
+    -- IMPORTANT: many real HitEffect packages keep the hit visuals directly
+    -- under the package root while only Death/Kill have named containers.
+    -- Old code rejected those packages completely, causing "Effect unavailable".
+    if mode == "Hit" then
+        return root, false
     end
 
-    -- Single-route captures predate named branch containers. Treat the root as
-    -- a hit effect only when it contains no route container at all.
-    if mode == "Hit" and not indexEffectTree(root).HasNamedBranch then
-        return root, true
+    -- Spawn captures without a _SPAWN_EFFECT wrapper are also valid root packages.
+    if mode == "Spawn" and not indexEffectTree(root).HasNamedBranch then
+        return root, false
     end
+
+    -- Death/Kill inherit the exact hit branch when one exists.
+    if mode == "Death" or mode == "Kill" then
+        local hitFallback = findEffectBranch(root, "Hit")
+        if hitFallback then return hitFallback, false end
+
+        -- Legacy package with no named route at all: reuse root.
+        if not indexEffectTree(root).HasNamedBranch then
+            return root, false
+        end
+    end
+
     return nil, false
 end
 
@@ -1264,6 +1304,36 @@ local function belongsToBranch(instance, branch)
     return instance == branch or instance:IsDescendantOf(branch)
 end
 
+-- True for:
+--   1) the selected route container and its descendants;
+--   2) shared/root-level components which are not under ANY route container.
+-- False for siblings belonging to Death/Kill/Spawn/Random route containers.
+--
+-- This fixes two opposite bugs from the old player:
+--   * exact _HIT_EFFECT played but shared particles were silently skipped;
+--   * using the whole root would also play _DEATH_EFFECT/_KILL_EFFECT together.
+local function isPlaybackActive(instance, root, branch)
+    if not instance or not root or not branch then return false end
+    if instance == root then return true end
+
+    local current = instance
+    while current and current ~= root do
+        local routeMode = routeModeFromName(current.Name)
+        if routeMode then
+            return current == branch
+        end
+        current = current.Parent
+    end
+
+    local rootRoute = routeModeFromName(root.Name)
+    if rootRoute then
+        return root == branch
+    end
+
+    -- No route ancestor => shared package content.
+    return true
+end
+
 local function isWaveVisual(instance, branch)
     if instance:IsA("ParticleEmitter") then
         local textureID = tostring(instance.Texture):match("%d+")
@@ -1281,26 +1351,28 @@ local function isWaveVisual(instance, branch)
     return false
 end
 
-local function branchHasWorldWave(branch, tree)
+local function branchHasWorldWave(root, branch, tree)
     for _, instance in ipairs(tree) do
-        if belongsToBranch(instance, branch)
+        if isPlaybackActive(instance, root, branch)
             and (instance:IsA("ParticleEmitter") or instance:IsA("Beam") or instance:IsA("Trail"))
-            and isWaveVisual(instance, branch) then
+            and isWaveVisual(instance, branch)
+        then
             return true
         end
     end
     return false
 end
 
-local function isBranchStructure(instance, branch, belongs)
-    if not branch then return true end
-    return belongs or branch:IsDescendantOf(instance)
+local function isBranchStructure(instance, root, branch, active)
+    if active then return true end
+    if not branch or branch == root then return false end
+    return branch:IsDescendantOf(instance)
 end
 
 local function readDurationHint(root, branch, mode, tree)
     local names = { "EmitDuration", "ActiveDuration", "EffectDuration", "Duration" }
     for _, source in ipairs({ branch, root }) do
-        if source then
+        if source and isPlaybackActive(source, root, branch) then
             for _, name in ipairs(names) do
                 local value = source:GetAttribute(name)
                 if type(value) == "number" and value > 0 then
@@ -1310,16 +1382,15 @@ local function readDurationHint(root, branch, mode, tree)
         end
     end
 
-    if branch then
-        for _, descendant in ipairs(tree or indexEffectTree(root).Tree) do
-            if belongsToBranch(descendant, branch) and descendant:IsA("NumberValue") then
-                local lowerName = descendant.Name:lower()
-                if lowerName:find("duration", 1, true) and descendant.Value > 0 then
-                    return math.clamp(descendant.Value, 0.02, MAX_AUTHORED_DURATION)
-                end
+    for _, descendant in ipairs(tree or indexEffectTree(root).Tree) do
+        if isPlaybackActive(descendant, root, branch) and descendant:IsA("NumberValue") then
+            local lowerName = descendant.Name:lower()
+            if lowerName:find("duration", 1, true) and descendant.Value > 0 then
+                return math.clamp(descendant.Value, 0.02, MAX_AUTHORED_DURATION)
             end
         end
     end
+
     return DEFAULT_ACTIVE_DURATION[mode] or 0.55
 end
 
@@ -1332,7 +1403,7 @@ local function readTotalDurationHint(root, branch, tree)
     for _, name in ipairs(names) do wanted[name:lower()] = true end
 
     for _, source in ipairs({ branch, root }) do
-        if source then
+        if source and isPlaybackActive(source, root, branch) then
             local okAttributes, attributes = pcall(source.GetAttributes, source)
             if okAttributes and type(attributes) == "table" then
                 for name, value in pairs(attributes) do
@@ -1345,10 +1416,11 @@ local function readTotalDurationHint(root, branch, tree)
     end
 
     for _, descendant in ipairs(tree or indexEffectTree(root).Tree) do
-        if belongsToBranch(descendant, branch)
+        if isPlaybackActive(descendant, root, branch)
             and (descendant:IsA("NumberValue") or descendant:IsA("IntValue"))
             and wanted[descendant.Name:lower()]
-            and descendant.Value > 0 then
+            and descendant.Value > 0
+        then
             return math.clamp(descendant.Value, 0.05, HARD_EFFECT_LIFETIME - 0.25)
         end
     end
@@ -1381,28 +1453,102 @@ local function readComponentNumber(instance, branch, names, fallback)
     return fallback
 end
 
-function Module.spawnVisualCloneAt(template, targetCF, mode)
-    if not template or not targetCF then return false end
+local function repairLegacyAttachmentReferences(root, branch, tree)
+    local attachments = {}
+    for _, instance in ipairs(tree) do
+        if instance:IsA("Attachment") and isPlaybackActive(instance, root, branch) then
+            table_insert(attachments, instance)
+        end
+    end
 
-    if not resolveEffectBranch(template, mode, false) then
+    if #attachments < 2 then return end
+
+    local function nearestAttachment(origin, excluded)
+        local originPosition
+        local okOrigin = pcall(function()
+            originPosition = origin.WorldPosition
+        end)
+        if not okOrigin or not originPosition then return nil end
+
+        local best
+        local bestDistance = math.huge
+        for _, candidate in ipairs(attachments) do
+            if candidate ~= excluded and candidate ~= origin then
+                local ok, position = pcall(function() return candidate.WorldPosition end)
+                if ok and position then
+                    local distance = (position - originPosition).Magnitude
+                    if distance < bestDistance then
+                        bestDistance = distance
+                        best = candidate
+                    end
+                end
+            end
+        end
+        return best
+    end
+
+    for _, instance in ipairs(tree) do
+        if (instance:IsA("Beam") or instance:IsA("Trail"))
+            and isPlaybackActive(instance, root, branch)
+        then
+            local attachment0 = instance.Attachment0
+            local attachment1 = instance.Attachment1
+
+            -- Legacy {Part,...} snapshots did not serialize Attachment0/1.
+            -- Prefer the owning Attachment, then choose the closest other
+            -- active Attachment as the opposite endpoint.
+            if not attachment0 and instance.Parent and instance.Parent:IsA("Attachment") then
+                attachment0 = instance.Parent
+                pcall(function() instance.Attachment0 = attachment0 end)
+            end
+
+            if not attachment0 then
+                attachment0 = attachments[1]
+                pcall(function() instance.Attachment0 = attachment0 end)
+            end
+
+            if not attachment1 and attachment0 then
+                attachment1 = nearestAttachment(attachment0, attachment0)
+                if attachment1 then
+                    pcall(function() instance.Attachment1 = attachment1 end)
+                end
+            end
+        end
+    end
+end
+
+function Module.spawnVisualCloneAt(template, targetCF, mode)
+    Controller.LastVFXError = nil
+    if not template or not targetCF then
+        Controller.LastVFXError = "template or target CFrame is missing"
+        return false
+    end
+
+    local templateBranch = resolveEffectBranch(template, mode, false)
+    if not templateBranch then
+        Controller.LastVFXError = "no compatible " .. tostring(mode) .. " route was found in the effect package"
         return false
     end
     local offsetY = Controller.VFXOffsetY or 0
     local rotationY = Controller.VFXRotationY or 0
 
     local ok, clone = pcall(template.Clone, template)
-    if not ok or not clone then return false end
+    if not ok or not clone then
+        Controller.LastVFXError = "effect template could not be cloned"
+        return false
+    end
 
     local folder = ensureSpawnFolder()
-    local branch = resolveEffectBranch(clone, mode, false)
+    local branch, branchExact = resolveEffectBranch(clone, mode, false)
     if not branch then
+        Controller.LastVFXError = "route disappeared after cloning"
         BranchCache[clone] = nil
         pcall(clone.Destroy, clone)
         return false
     end
     local indexedClone = indexEffectTree(clone)
     local tree = indexedClone.Tree
-    local worldAligned = branchHasWorldWave(branch, tree)
+    local worldAligned = branchHasWorldWave(clone, branch, tree)
     if worldAligned then
         local position = targetCF.Position
         targetCF = CFrame_new(position.X, position.Y + offsetY, position.Z)
@@ -1485,7 +1631,28 @@ function Module.spawnVisualCloneAt(template, targetCF, mode)
         clone:PivotTo(targetCF)
         clone.Parent = folder
     elseif clone:IsA("BasePart") then
+        -- Parenting Parts does not make child Parts inherit CFrame. Legacy effect
+        -- packages often use a Part root with additional Part route containers.
+        -- Preserve every child Part's transform relative to the captured root.
+        local originalRootCF = clone.CFrame
+        local relativeParts = {}
+        for _, descendant in ipairs(tree) do
+            if descendant ~= clone and descendant:IsA("BasePart") then
+                local okRelative, relative = pcall(function()
+                    return originalRootCF:ToObjectSpace(descendant.CFrame)
+                end)
+                if okRelative then
+                    relativeParts[descendant] = relative
+                end
+            end
+        end
+
         clone.CFrame = targetCF
+        for part, relative in pairs(relativeParts) do
+            pcall(function()
+                part.CFrame = targetCF * relative
+            end)
+        end
         clone.Parent = folder
     else
         local anchor = Instance.new("Part")
@@ -1501,6 +1668,9 @@ function Module.spawnVisualCloneAt(template, targetCF, mode)
         clone.Parent = anchor
         cleanupRoot = anchor
     end
+
+    -- Restore missing Beam/Trail endpoint references in old legacy dumps.
+    repairLegacyAttachmentReferences(clone, branch, tree)
 
     local pendingSounds = 0
     local visualsFinished = false
@@ -1559,7 +1729,7 @@ function Module.spawnVisualCloneAt(template, targetCF, mode)
     end
 
     for _, instance in ipairs(tree) do
-        local active = belongsToBranch(instance, branch)
+        local active = isPlaybackActive(instance, clone, branch)
         if active and instance:IsA("PostEffect") then
             instance.Enabled = false
             instance.Parent = Lighting
@@ -1583,7 +1753,7 @@ function Module.spawnVisualCloneAt(template, targetCF, mode)
             latestVisualEnd = math.max(latestVisualEnd, 1)
         end
         if instance:IsA("BasePart") then
-            optimizePart(instance, isBranchStructure(instance, branch, active))
+            optimizePart(instance, isBranchStructure(instance, clone, branch, active))
         end
         if instance:IsA("ParticleEmitter") then
             local originallyEnabled = instance:GetAttribute("__EffectOriginalEnabled")

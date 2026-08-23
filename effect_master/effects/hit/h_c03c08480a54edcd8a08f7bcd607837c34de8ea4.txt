@@ -1,0 +1,1 @@
+{"NormalizedName":"peppercontest","Description":"Thank you for participating in the naughty or nice art contest!","ItemID":"_hitEffectPepperContest","Category":"HitEffect","PreviewImage":"rbxassetid://132876596609719","DisplayString":"[Special] 🌟 Pepper Contest (_hitEffectPepperContest)","Rarity":"Special","Name":"Pepper Contest"}

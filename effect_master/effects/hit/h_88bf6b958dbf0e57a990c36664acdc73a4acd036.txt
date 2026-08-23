@@ -1,0 +1,1 @@
+{"NormalizedName":"judgement","Description":"Thy end is now!","ItemID":"_hitEffectJudgement","Category":"HitEffect","PreviewImage":"rbxassetid://79526922023930","DisplayString":"[Special] 🌟 Judgement (_hitEffectJudgement)","Rarity":"Special","Name":"Judgement"}

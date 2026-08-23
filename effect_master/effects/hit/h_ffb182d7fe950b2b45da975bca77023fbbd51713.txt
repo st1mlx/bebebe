@@ -1,0 +1,1 @@
+{"NormalizedName":"mushroomoutburst","Description":"Mmm… suspicious stew…","ItemID":"_hitEffectMushroomOutburst","Category":"HitEffect","PreviewImage":"rbxassetid://136062549201380","DisplayString":"[Uncommon] 🟢 Mushroom Outburst (_hitEffectMushroomOutburst)","Rarity":"Uncommon","Name":"Mushroom Outburst"}

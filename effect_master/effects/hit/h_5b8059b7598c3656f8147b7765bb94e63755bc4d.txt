@@ -1,0 +1,1 @@
+{"NormalizedName":"testerhiteffect","Description":"Silksong Won - I DON'T CARE","ItemID":"_hitEffectTestingHack","Category":"HitEffect","PreviewImage":"rbxassetid://88482304221223","DisplayString":"[Special] 🌟 Tester_HitEffect (_hitEffectTestingHack)","Rarity":"Special","Name":"Tester_HitEffect"}

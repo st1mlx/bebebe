@@ -1,0 +1,1 @@
+{"NormalizedName":"marshmallowcritters","Description":"The dubious little creature getting up to mischief.","ItemID":"_hitEffectMarshmallowCritters","Category":"HitEffect","PreviewImage":"rbxassetid://136424407385491","DisplayString":"[Rare] 🔵 Marshmallow Critters (_hitEffectMarshmallowCritters)","Rarity":"Rare","Name":"Marshmallow Critters"}

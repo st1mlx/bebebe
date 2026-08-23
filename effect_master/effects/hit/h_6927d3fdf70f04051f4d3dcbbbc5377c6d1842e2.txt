@@ -1,0 +1,1 @@
+{"NormalizedName":"dacat","Description":"BAHAHAHHAHAHAHAHAHAHAHAHHAHA","ItemID":"_hitEffectDaCat","Category":"HitEffect","PreviewImage":"rbxassetid://16541142603","DisplayString":"[Special] 🌟 DA CAT (_hitEffectDaCat)","Rarity":"Special","Name":"DA CAT"}

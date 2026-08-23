@@ -1,0 +1,1 @@
+{"NormalizedName":"putridspew","Description":"Start any fight with a poison debuff","ItemID":"_hitEffectPutridSpew","Category":"HitEffect","PreviewImage":"rbxassetid://132645619394864","DisplayString":"[Rare] 🔵 Putrid Spew (_hitEffectPutridSpew)","Rarity":"Rare","Name":"Putrid Spew"}

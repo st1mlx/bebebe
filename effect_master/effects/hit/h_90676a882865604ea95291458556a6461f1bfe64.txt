@@ -1,0 +1,1 @@
+{"NormalizedName":"kitetakeoff","Description":"I can fly if I wanted to!","ItemID":"_hitEffectKiteTakeOff","Category":"HitEffect","PreviewImage":"rbxassetid://95016352315274","DisplayString":"[Uncommon] 🟢 Kite Takeoff (_hitEffectKiteTakeOff)","Rarity":"Uncommon","Name":"Kite Takeoff"}

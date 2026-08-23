@@ -1,0 +1,1 @@
+{"NormalizedName":"goldensparkles","Description":"Only allowed on New Year’s Eve!","ItemID":"_hitEffectGoldenSparkles","Category":"HitEffect","PreviewImage":"rbxassetid://90940804187549","DisplayString":"[Rare] 🔵 Golden Sparkles (_hitEffectGoldenSparkles)","Rarity":"Rare","Name":"Golden Sparkles"}

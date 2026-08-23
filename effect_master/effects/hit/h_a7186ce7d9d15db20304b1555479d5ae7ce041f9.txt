@@ -1,0 +1,1 @@
+{"NormalizedName":"chip","Description":"crunch","ItemID":"_hitEffectChip","Category":"HitEffect","PreviewImage":"rbxassetid://121542269801738","DisplayString":"[Rare] 🔵 Chip (_hitEffectChip)","Rarity":"Rare","Name":"Chip"}

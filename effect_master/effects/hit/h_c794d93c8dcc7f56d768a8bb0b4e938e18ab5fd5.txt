@@ -1,0 +1,1 @@
+{"NormalizedName":"spiderinfestation","Description":"GET EM OFF GET EM OFF GET EM OFF!!!!!!","ItemID":"_hitEffectSpiderInfestation","Category":"HitEffect","PreviewImage":"rbxassetid://85265454213710","DisplayString":"[Uncommon] 🟢 Spider Infestation (_hitEffectSpiderInfestation)","Rarity":"Uncommon","Name":"Spider Infestation"}

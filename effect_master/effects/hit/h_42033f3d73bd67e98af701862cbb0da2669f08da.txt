@@ -1,0 +1,1 @@
+{"NormalizedName":"developer","Description":"OMG ITS A DEVELOPER","ItemID":"_hitEffectDeveloper","Category":"HitEffect","PreviewImage":"rbxassetid://15000696110","DisplayString":"[Special] 🌟 Developer (_hitEffectDeveloper)","Rarity":"Special","Name":"Developer"}

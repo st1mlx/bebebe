@@ -1,0 +1,1 @@
+{"NormalizedName":"starrynight","Description":"Hey I can see my house from here- Wait where am I..","ItemID":"_hitEffectStarryNight","Category":"HitEffect","PreviewImage":"rbxassetid://135803574365723","DisplayString":"[Uncommon] 🟢 Starry Night (_hitEffectStarryNight)","Rarity":"Uncommon","Name":"Starry Night"}

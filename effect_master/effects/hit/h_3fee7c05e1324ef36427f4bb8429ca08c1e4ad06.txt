@@ -1,0 +1,1 @@
+{"NormalizedName":"pastelconfetti","Description":"A choking hazard.","ItemID":"_hitEffectPastelConfetti","Category":"HitEffect","PreviewImage":"rbxassetid://90167727837040","DisplayString":"[Uncommon] 🟢 PastelConfetti (_hitEffectPastelConfetti)","Rarity":"Uncommon","Name":"PastelConfetti"}

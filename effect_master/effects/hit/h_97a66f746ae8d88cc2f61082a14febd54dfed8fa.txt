@@ -1,0 +1,1 @@
+{"NormalizedName":"loomingfog","Description":"You haven’t unlocked this hit effect yet","ItemID":"_hitEffectLoomingFog","Category":"HitEffect","PreviewImage":"rbxassetid://126892432786174","DisplayString":"[Uncommon] 🟢 Looming Fog (_hitEffectLoomingFog)","Rarity":"Uncommon","Name":"Looming Fog"}

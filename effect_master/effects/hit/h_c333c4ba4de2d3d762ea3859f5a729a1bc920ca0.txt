@@ -1,0 +1,1 @@
+{"NormalizedName":"blackfeatherburst","Description":"STOP SHEDDING YOUR FEATHERS!!!","ItemID":"_hitEffectBlackFeatherBurst","Category":"HitEffect","PreviewImage":"rbxassetid://113243528152819","DisplayString":"[Uncommon] 🟢 Black Feather Burst (_hitEffectBlackFeatherBurst)","Rarity":"Uncommon","Name":"Black Feather Burst"}

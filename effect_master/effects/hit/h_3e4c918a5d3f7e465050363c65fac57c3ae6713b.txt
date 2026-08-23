@@ -1,0 +1,1 @@
+{"NormalizedName":"dustbomb","Description":"EXTREMELY VIOLENT COUGHING","ItemID":"_hitEffectSmokeBomb","Category":"HitEffect","PreviewImage":"rbxassetid://117074467612238","DisplayString":"[Uncommon] 🟢 Dust Bomb (_hitEffectSmokeBomb)","Rarity":"Uncommon","Name":"Dust Bomb"}

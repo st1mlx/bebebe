@@ -1,0 +1,1 @@
+{"NormalizedName":"intergalacticsparkles","Description":"The power of the stars in your glove","ItemID":"_hitEffectBluePortal","Category":"HitEffect","PreviewImage":"rbxassetid://90645744715825","DisplayString":"[Uncommon] 🟢 Intergalactic Sparkles (_hitEffectBluePortal)","Rarity":"Uncommon","Name":"Intergalactic Sparkles"}

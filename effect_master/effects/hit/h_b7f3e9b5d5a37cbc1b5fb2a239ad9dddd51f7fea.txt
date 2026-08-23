@@ -1,0 +1,1 @@
+{"NormalizedName":"bells","Description":"Time to deck some halls with these Jingle bells","ItemID":"_hitEffectBells","Category":"HitEffect","PreviewImage":"rbxassetid://140721715064899","DisplayString":"[Uncommon] 🟢 Bells (_hitEffectBells)","Rarity":"Uncommon","Name":"Bells"}

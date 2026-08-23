@@ -1,0 +1,1 @@
+{"NormalizedName":"stabbingicicles","Description":"Oh, would you look at that. I’ve been impaled.","ItemID":"_hitEffectIceStab","Category":"HitEffect","PreviewImage":"rbxassetid://112993948246466","DisplayString":"[Rare] 🔵 Stabbing Icicles (_hitEffectIceStab)","Rarity":"Rare","Name":"Stabbing Icicles"}

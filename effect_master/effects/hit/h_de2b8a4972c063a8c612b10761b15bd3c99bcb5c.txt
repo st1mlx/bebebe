@@ -1,0 +1,1 @@
+{"NormalizedName":"pumpkinmoon","Description":"When the Moon hits your eye like a big Pumpkin Pie","ItemID":"_hitEffectPumpkinMoon","Category":"HitEffect","PreviewImage":"rbxassetid://81428328670485","DisplayString":"[Uncommon] 🟢 Pumpkin Moon (_hitEffectPumpkinMoon)","Rarity":"Uncommon","Name":"Pumpkin Moon"}

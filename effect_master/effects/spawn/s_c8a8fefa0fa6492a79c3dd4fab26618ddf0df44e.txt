@@ -1,0 +1,1 @@
+{"NormalizedName":"defaultspawneffect","Description":"A test spawn effect","ItemID":"_spawnEffectDefault","Category":"SpawnEffect","PreviewImage":"rbxassetid://1","DisplayString":"[Common] ⚪ Default Spawn Effect (_spawnEffectDefault)","Rarity":"Common","Name":"Default Spawn Effect"}

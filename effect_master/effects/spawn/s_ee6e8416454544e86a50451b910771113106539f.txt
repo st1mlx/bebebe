@@ -1,0 +1,1 @@
+{"NormalizedName":"peppercontestspawn","Description":"Thank you for participating in the art contest!","ItemID":"_spawnEffectPepperContest","Category":"SpawnEffect","PreviewImage":"rbxassetid://97561065553675","DisplayString":"[Special] 🌟 Pepper Contest (SPAWN) (_spawnEffectPepperContest)","Rarity":"Special","Name":"Pepper Contest (SPAWN)"}

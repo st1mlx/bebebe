@@ -1,0 +1,1 @@
+{"NormalizedName":"grassfireflies","Description":"You have literally no excuse now. You have to touch it. It’s on your glove.","ItemID":"_hitEffectGrassAndFireflies","Category":"HitEffect","PreviewImage":"rbxassetid://89325410405999","DisplayString":"[Uncommon] 🟢 Grass & Fireflies (_hitEffectGrassAndFireflies)","Rarity":"Uncommon","Name":"Grass & Fireflies"}

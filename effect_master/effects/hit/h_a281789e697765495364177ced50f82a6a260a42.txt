@@ -1,0 +1,1 @@
+{"NormalizedName":"feathersburst","Description":"Huh, that’s odd. I thought that would be big news.","ItemID":"_hitEffectFeathersBurst","Category":"HitEffect","PreviewImage":"rbxassetid://81305176807109","DisplayString":"[Uncommon] 🟢 Feathers Burst (_hitEffectFeathersBurst)","Rarity":"Uncommon","Name":"Feathers Burst"}

@@ -1,0 +1,1 @@
+{"NormalizedName":"tomeburst","Description":"THE SACRED TEXTS!!","ItemID":"_hitEffectTomeBurst","Category":"HitEffect","PreviewImage":"rbxassetid://99028549586804","DisplayString":"[Uncommon] 🟢 Tome Burst (_hitEffectTomeBurst)","Rarity":"Uncommon","Name":"Tome Burst"}

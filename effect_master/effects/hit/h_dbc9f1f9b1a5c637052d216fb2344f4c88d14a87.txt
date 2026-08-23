@@ -1,0 +1,1 @@
+{"NormalizedName":"hamburger","Description":"HAMBRGR","ItemID":"_hitEffectHamburger","Category":"HitEffect","PreviewImage":"rbxassetid://16743265783","DisplayString":"[Special] 🌟 hamburger (_hitEffectHamburger)","Rarity":"Special","Name":"hamburger"}

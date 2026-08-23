@@ -1,0 +1,1 @@
+{"NormalizedName":"crimsonuproar","Description":"WHO KEEPS FEEDING THESE THINGS!? WHY IS THIS PLACE SO FULL OF CROWS!?!?","ItemID":"_hitEffectCrimsonUproar","Category":"HitEffect","PreviewImage":"rbxassetid://103935485735647","DisplayString":"[Rare] 🔵 Crimson Uproar (_hitEffectCrimsonUproar)","Rarity":"Rare","Name":"Crimson Uproar"}

@@ -1,0 +1,1 @@
+{"NormalizedName":"seal","Description":"Let’s seal the deal! 🦭","ItemID":"_hitEffectSeal","Category":"HitEffect","PreviewImage":"rbxassetid://133653951199563","DisplayString":"[Rare] 🔵 Seal (_hitEffectSeal)","Rarity":"Rare","Name":"Seal"}

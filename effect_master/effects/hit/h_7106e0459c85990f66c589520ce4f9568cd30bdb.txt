@@ -1,0 +1,1 @@
+{"NormalizedName":"pixelatedsnow","Description":"Woah! So Retro! (Jolly edition)","ItemID":"_hitEffectPixelatedSnow","Category":"HitEffect","PreviewImage":"rbxassetid://79834595156344","DisplayString":"[Rare] 🔵 Pixelated Snow (_hitEffectPixelatedSnow)","Rarity":"Rare","Name":"Pixelated Snow"}

@@ -1,0 +1,1 @@
+{"NormalizedName":"burstofflame","Description":"Has anybody ever told you not to play with fire?","ItemID":"_hitEffectFlameThrower","Category":"HitEffect","PreviewImage":"rbxassetid://131989063517513","DisplayString":"[Uncommon] 🟢 Burst Of Flame (_hitEffectFlameThrower)","Rarity":"Uncommon","Name":"Burst Of Flame"}

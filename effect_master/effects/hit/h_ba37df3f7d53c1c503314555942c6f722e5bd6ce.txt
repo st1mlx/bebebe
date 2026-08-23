@@ -1,0 +1,1 @@
+{"NormalizedName":"sunbeams","Description":"MY EYES ARE ON FIRE!!!","ItemID":"_hitEffectSunBeams","Category":"HitEffect","PreviewImage":"rbxassetid://92595026371104","DisplayString":"[Rare] 🔵 Sun Beams (_hitEffectSunBeams)","Rarity":"Rare","Name":"Sun Beams"}

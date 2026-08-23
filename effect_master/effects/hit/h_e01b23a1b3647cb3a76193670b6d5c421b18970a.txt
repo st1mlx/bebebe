@@ -1,0 +1,1 @@
+{"NormalizedName":"kittykatastrophe","Description":"Meow, meow! I can tell your favorite chocolate is Kit-Kat!","ItemID":"_hitEffectKittyKatastrophe","Category":"HitEffect","PreviewImage":"rbxassetid://88482304221223","DisplayString":"[Special] 🌟 Kitty Katastrophe! (_hitEffectKittyKatastrophe)","Rarity":"Special","Name":"Kitty Katastrophe!"}

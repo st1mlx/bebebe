@@ -1,0 +1,1 @@
+{"NormalizedName":"rockyprison","Description":"What if YOU were BETRAYED and TRAPPED in the ROCKY PRISON for 1000 YEARS","ItemID":"_hitEffectRockyPrison","Category":"HitEffect","PreviewImage":"rbxassetid://108651817508103","DisplayString":"[Uncommon] 🟢 Rocky Prison (_hitEffectRockyPrison)","Rarity":"Uncommon","Name":"Rocky Prison"}

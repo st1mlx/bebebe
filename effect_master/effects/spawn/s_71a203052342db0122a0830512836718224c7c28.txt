@@ -1,0 +1,1 @@
+{"NormalizedName":"bassspawn","Description":"🔊","ItemID":"_spawnEffectBassBoost","Category":"SpawnEffect","PreviewImage":"rbxassetid://138979414642977","DisplayString":"[Uncommon] 🟢 Bass Spawn (_spawnEffectBassBoost)","Rarity":"Uncommon","Name":"Bass Spawn"}

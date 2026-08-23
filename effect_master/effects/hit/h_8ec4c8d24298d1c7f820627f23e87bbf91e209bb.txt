@@ -1,0 +1,1 @@
+{"NormalizedName":"truetone","Description":"Watch yo tone","ItemID":"_hitEffectTrueTone","Category":"HitEffect","PreviewImage":"rbxassetid://74590766504021","DisplayString":"[Uncommon] 🟢 True Tone (_hitEffectTrueTone)","Rarity":"Uncommon","Name":"True Tone"}

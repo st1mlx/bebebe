@@ -1,0 +1,1 @@
+{"NormalizedName":"tungtung","Description":"Excuse me sir, congratulations on being granted this valiant reward! Created by @BestEverNova2516","ItemID":"_hitEffectTung","Category":"HitEffect","PreviewImage":"rbxassetid://84943239102297","DisplayString":"[Special] 🌟 Tung Tung (_hitEffectTung)","Rarity":"Special","Name":"Tung Tung"}

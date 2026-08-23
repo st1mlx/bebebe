@@ -1,10 +1,11 @@
-local Module = { VERSION = 8 }
+local Module = { VERSION = 9 }
 
 local Controller
 local Serializer
 local ReplicatedStorage
 local ContentProvider
 local hasFileSystem = false
+local RemoteEffectBaseURL = ""
 local AssetsFolder
 local HitFolder
 local SpawnFolder
@@ -40,6 +41,9 @@ function Module.Init(deps)
     ReplicatedStorage = deps.ReplicatedStorage or game:GetService("ReplicatedStorage")
     ContentProvider = deps.ContentProvider or game:GetService("ContentProvider")
     hasFileSystem = deps.hasFileSystem == true
+    RemoteEffectBaseURL = assert(deps.RemoteEffectBaseURL, "Storage.Init: RemoteEffectBaseURL required")
+    Controller.LastEffectLoadError = Controller.LastEffectLoadError or {}
+    Controller.RemoteSerializedCache = Controller.RemoteSerializedCache or {}
     refreshAssetFolders()
     return Module
 end
@@ -47,6 +51,8 @@ end
 function Module.ensureEffectInstanceLoaded(entry)
     if not entry then return nil end
     local id = entry.ItemID
+    Controller.LastEffectLoadError[id] = nil
+
     local cached = Controller.InstanceCache[id]
     if cached then
         local valid = pcall(function() return cached.ClassName end)
@@ -54,6 +60,7 @@ function Module.ensureEffectInstanceLoaded(entry)
         Controller.InstanceCache[id] = nil
     end
 
+    -- 1) Best source: the actual template already replicated by this server.
     local hitFolder, spawnFolder = refreshAssetFolders()
     local found = (hitFolder and hitFolder:FindFirstChild(id)) or (spawnFolder and spawnFolder:FindFirstChild(id))
     if found then
@@ -62,6 +69,7 @@ function Module.ensureEffectInstanceLoaded(entry)
         return found
     end
 
+    -- 2) Fresh payload from bebebe/secret, if present.
     local serialized = Controller.CloudCache[id]
     if serialized and failedSerialized[id] ~= serialized then
         local deserialized = Serializer.deserializeInstance(serialized)
@@ -71,8 +79,48 @@ function Module.ensureEffectInstanceLoaded(entry)
             return deserialized
         end
         failedSerialized[id] = serialized
+        Controller.LastEffectLoadError[id] = "secret payload could not be deserialized"
     end
 
+    -- 3) Public per-effect server file. This is the normal fallback for effects
+    -- not replicated on the current server. It is downloaded only on demand.
+    if type(entry.RemotePath) == "string" and entry.RemotePath ~= "" then
+        local remoteSerialized = Controller.RemoteSerializedCache[id]
+
+        if not remoteSerialized then
+            local separator = RemoteEffectBaseURL:find("?", 1, true) and "&" or "?"
+            local url = RemoteEffectBaseURL .. entry.RemotePath
+                .. (entry.RemotePath:find("?", 1, true) and "&" or "?")
+                .. "v=20260823v16"
+
+            local okFetch, body = pcall(function()
+                return game:HttpGet(url)
+            end)
+
+            if okFetch and type(body) == "string" and #body > 16
+                and not body:find("404: Not Found", 1, true)
+                and not body:lower():find("<html", 1, true)
+            then
+                remoteSerialized = body
+                Controller.RemoteSerializedCache[id] = body
+            else
+                Controller.LastEffectLoadError[id] = "remote effect file download failed: " .. tostring(entry.RemotePath)
+            end
+        end
+
+        if remoteSerialized then
+            local deserialized = Serializer.deserializeInstance(remoteSerialized)
+            if deserialized then
+                Controller.InstanceCache[id] = deserialized
+                Controller.LastEffectLoadError[id] = nil
+                return deserialized
+            end
+            Controller.LastEffectLoadError[id] = "remote effect file could not be deserialized: " .. tostring(entry.RemotePath)
+        end
+    end
+
+    -- 4) Optional legacy local workspace fallback. It is not required by v16,
+    -- but keeping it makes old personal dumps usable.
     if hasFileSystem then
         local subDir = (entry.Category == "SpawnEffect") and "spawn" or "hit"
         local categoryPrefix = (entry.Category == "SpawnEffect") and "SpawnEffect" or "HitEffect"
@@ -116,6 +164,7 @@ function Module.ensureEffectInstanceLoaded(entry)
                         if deserialized then
                             Controller.InstanceCache[id] = deserialized
                             failedFileContents[filePath] = nil
+                            Controller.LastEffectLoadError[id] = nil
                             return deserialized
                         end
                         failedFileContents[filePath] = raw
@@ -125,7 +174,19 @@ function Module.ensureEffectInstanceLoaded(entry)
         end
     end
 
+    if not Controller.LastEffectLoadError[id] then
+        if entry.RemotePath then
+            Controller.LastEffectLoadError[id] = "template exists in index but no usable payload source succeeded"
+        else
+            Controller.LastEffectLoadError[id] = "effect is not present in the public effect index"
+        end
+    end
     return nil
+end
+
+function Module.getLastLoadError(entryOrId)
+    local id = type(entryOrId) == "table" and entryOrId.ItemID or entryOrId
+    return id and Controller.LastEffectLoadError[id] or nil
 end
 
 function Module.preloadAssetsAsync(instances)

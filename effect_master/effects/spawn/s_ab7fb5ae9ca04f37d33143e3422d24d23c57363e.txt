@@ -1,0 +1,1 @@
+{"NormalizedName":"kittykatastrophespawn","Description":"MEOW MEOW MEOW MEOW MEOW","ItemID":"_spawnEffectKittyKatastrophe","Category":"SpawnEffect","PreviewImage":"rbxassetid://88482304221223","DisplayString":"[Special] 🌟 Kitty Katastrophe! (SPAWN) (_spawnEffectKittyKatastrophe)","Rarity":"Special","Name":"Kitty Katastrophe! (SPAWN)"}

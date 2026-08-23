@@ -1,0 +1,1 @@
+{"NormalizedName":"croakingcontamination","Description":"They’re putting chemicals in the water-","ItemID":"_hitEffectCroakingContamination","Category":"HitEffect","PreviewImage":"rbxassetid://117284192883876","DisplayString":"[Rare] 🔵 Croaking Contamination (_hitEffectCroakingContamination)","Rarity":"Rare","Name":"Croaking Contamination"}

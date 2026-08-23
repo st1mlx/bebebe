@@ -1,0 +1,1 @@
+{"NormalizedName":"windtornado","Description":"Weather Machine disaster","ItemID":"_hitEffectWindTornado","Category":"HitEffect","PreviewImage":"rbxassetid://108003602154051","DisplayString":"[Rare] 🔵 Wind Tornado (_hitEffectWindTornado)","Rarity":"Rare","Name":"Wind Tornado"}

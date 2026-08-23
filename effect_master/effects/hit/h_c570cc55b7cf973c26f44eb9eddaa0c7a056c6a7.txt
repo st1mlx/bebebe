@@ -1,0 +1,1 @@
+{"NormalizedName":"cozymoon","Description":"A Grand Day Out","ItemID":"_hitEffectCozyMoon","Category":"HitEffect","PreviewImage":"rbxassetid://87711496501551","DisplayString":"[Rare] 🔵 Cozy Moon (_hitEffectCozyMoon)","Rarity":"Rare","Name":"Cozy Moon"}

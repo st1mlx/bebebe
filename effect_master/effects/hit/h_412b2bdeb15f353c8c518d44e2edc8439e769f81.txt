@@ -1,0 +1,1 @@
+{"NormalizedName":"constellations","Description":"I-is that BOB???","ItemID":"_hitEffectConstellations","Category":"HitEffect","PreviewImage":"rbxassetid://18452047926","DisplayString":"[Rare] 🔵 Constellations (_hitEffectConstellations)","Rarity":"Rare","Name":"Constellations"}

@@ -1,0 +1,1 @@
+{"NormalizedName":"thecoolerdefault","Description":"The Default they tell you not to worry about","ItemID":"_hitEffectDefaultReworked","Category":"HitEffect","PreviewImage":"rbxassetid://112189110470254","DisplayString":"[Uncommon] 🟢 The Cooler Default (_hitEffectDefaultReworked)","Rarity":"Uncommon","Name":"The Cooler Default"}

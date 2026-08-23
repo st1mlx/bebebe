@@ -1,0 +1,1 @@
+{"NormalizedName":"butterflyascend","Description":"Now if you went back in time and use this hit effect, I feel like it’d cause the universe to implode.","ItemID":"_hitEffectButterflyAscend","Category":"HitEffect","PreviewImage":"rbxassetid://136192034326499","DisplayString":"[Uncommon] 🟢 Butterfly Ascend (_hitEffectButterflyAscend)","Rarity":"Uncommon","Name":"Butterfly Ascend"}

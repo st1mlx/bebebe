@@ -1,0 +1,1 @@
+{"NormalizedName":"candycanes","Description":"HOLD THEM LIKE A CANE-","ItemID":"_hitEffectCandyCanes","Category":"HitEffect","PreviewImage":"rbxassetid://122836009531557","DisplayString":"[Uncommon] 🟢 Candy Canes (_hitEffectCandyCanes)","Rarity":"Uncommon","Name":"Candy Canes"}

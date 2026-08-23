@@ -1,0 +1,1 @@
+{"NormalizedName":"crows","Description":"Coats your glove in bird seed","ItemID":"_hitEffectCrows","Category":"HitEffect","PreviewImage":"rbxassetid://103973111527642","DisplayString":"[Rare] 🔵 Crows (_hitEffectCrows)","Rarity":"Rare","Name":"Crows"}

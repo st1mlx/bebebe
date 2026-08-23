@@ -1,0 +1,1 @@
+{"NormalizedName":"stellarspawn","Description":"BECOME the star!","ItemID":"_spawnEffectStellarGlow","Category":"SpawnEffect","PreviewImage":"rbxassetid://111657015998162","DisplayString":"[Legendary] 🟡 Stellar Spawn (_spawnEffectStellarGlow)","Rarity":"Legendary","Name":"Stellar Spawn"}

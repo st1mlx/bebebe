@@ -1,0 +1,1 @@
+{"NormalizedName":"tungtung","Description":"Congratulations on being granted this valiant reward!","ItemID":"_spawnEffectTungBlast","Category":"SpawnEffect","PreviewImage":"rbxassetid://84943239102297","DisplayString":"[Special] 🌟 Tung Tung (_spawnEffectTungBlast)","Rarity":"Special","Name":"Tung Tung"}

@@ -1,0 +1,1 @@
+{"NormalizedName":"grug","Description":"grug.","ItemID":"_hitEffectGrug","Category":"HitEffect","PreviewImage":"rbxassetid://119108766353697","DisplayString":"[Special] 🌟 Grug (_hitEffectGrug)","Rarity":"Special","Name":"Grug"}
