@@ -17,6 +17,7 @@ local function isAllowedSpecialKill(id)
     local normalized = tostring(id or ""):lower():gsub("[^%w]", "")
     return normalized:find("staffrave", 1, true) ~= nil
         or normalized:find("kittykatastrophe", 1, true) ~= nil
+        or normalized:find("tung", 1, true) ~= nil
 end
 
 local ROUTE_MARKERS = {
@@ -339,6 +340,7 @@ local RARITY_MAP = {
     ["_hitEffectStabbingNails"] = "Epic",
     ["_hitEffectStaffRave"] = "Special",
     ["_hitEffectKittyKatastrophe"] = "Special",
+    ["_hitEffectTung"] = "Special",
     ["_hitEffectStainedGlass"] = "Uncommon",
     ["_hitEffectStarfall"] = "Epic",
     ["_hitEffectStarryNight"] = "Epic",
@@ -602,6 +604,7 @@ local EFFECT_TEXTURE_MAP = {
     ["_hitEffectStabbingNails"] = "rbxassetid://10849912178",
     ["_hitEffectStaffRave"] = "rbxassetid://134110202576558",
     ["_hitEffectKittyKatastrophe"] = "rbxassetid://12528455353",
+    ["_hitEffectTung"] = "rbxassetid://84943239102297",
     ["_hitEffectStainedGlass"] = "rbxassetid://15972621234",
     ["_hitEffectStarfall"] = "rbxassetid://10849912178",
     ["_hitEffectStarryNight"] = "rbxassetid://17062452122",
@@ -657,6 +660,7 @@ local EFFECT_TEXTURE_MAP = {
 }
 
 local EXACT_EFFECT_METADATA = {
+    ["_hitEffectTung"] = { Rarity = "Special", DisplayName = "Tung Tung Sahur" },
     ["_hitEffectDemonicFireRing"] = { Rarity = "Mythical", DisplayName = "Hellfire Sigil" },
     ["_hitEffectFlamingPandemonium"] = { Rarity = "Mythical", DisplayName = "Pandecrownium" },
     ["_hitEffectBarzilBlackhole"] = { Rarity = "Mythical", DisplayName = "Barzilian Nexus" },
@@ -835,7 +839,7 @@ function Module.registerCatalogItem(category, id, name, rarity, instance, serial
         local exact = EXACT_EFFECT_METADATA[id]
         if exact then
             name = exact.DisplayName
-            rarity = "Mythical"
+            rarity = exact.Rarity or "Mythical"
         end
 
         if type(name) == "string" and name ~= "" and entry.Name ~= name then
@@ -980,7 +984,7 @@ function Module.loadMasterDatabase()
         local exact = EXACT_EFFECT_METADATA[id]
         if exact then
             name = exact.DisplayName
-            rarity = "Mythical"
+            rarity = exact.Rarity or "Mythical"
         end
 
         return serialized, name, rarity
@@ -1046,7 +1050,7 @@ function Module.loadMasterDatabase()
                 if exact then
                     category = "HitEffect"
                     name = exact.DisplayName
-                    rarity = "Mythical"
+                    rarity = exact.Rarity or "Mythical"
                 end
 
                 local entry = Module.registerCatalogItem(category, id, name, rarity, nil, nil)
@@ -1072,7 +1076,7 @@ function Module.loadMasterDatabase()
     for id, exact in pairs(EXACT_EFFECT_METADATA) do
         local entry = Controller.CatalogByID[id]
         if entry then
-            Module.registerCatalogItem("HitEffect", id, exact.DisplayName, "Mythical", nil, nil)
+            Module.registerCatalogItem("HitEffect", id, exact.DisplayName, exact.Rarity or "Mythical", nil, nil)
         end
     end
 
