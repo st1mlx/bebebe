@@ -1753,7 +1753,7 @@
     "_hitEffectPonderingORB": {
       "Category": "HitEffect",
       "Name": "Pondering ORB",
-      "Rarity": "Epic",
+      "Rarity": "Special",
       "Path": "hit/h_20f41f3921c96841b93f682a8b54fcad47a57af8.txt",
       "Bytes": 4729,
       "SHA256": "0fcec8e44fb1f5d8d3285733886daa9d9fe89d99c881836a30a94d9ed824e16a",
@@ -2158,7 +2158,7 @@
     "_hitEffectSodaDelight": {
       "Category": "HitEffect",
       "Name": "Soda Delight",
-      "Rarity": "Rare",
+      "Rarity": "Special",
       "Path": "hit/h_7672cf41f043432961fcb17c6affdb799a721dec.txt",
       "Bytes": 5528,
       "SHA256": "10cc9062ac2afd7ed9fe3cd9daa75aff4a23a47d31752579eb7b9f58ba95cd3a",

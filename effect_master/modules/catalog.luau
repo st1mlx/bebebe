@@ -18,6 +18,8 @@ local function isAllowedSpecialKill(id)
     return normalized:find("staffrave", 1, true) ~= nil
         or normalized:find("kittykatastrophe", 1, true) ~= nil
         or normalized:find("tung", 1, true) ~= nil
+        or normalized:find("sodadelight", 1, true) ~= nil
+        or normalized:find("ponderingorb", 1, true) ~= nil
 end
 
 local ROUTE_MARKERS = {
@@ -292,7 +294,7 @@ local RARITY_MAP = {
     ["_hitEffectPlasmaBlast"] = "Epic",
     ["_hitEffectPobsLightSnack"] = "Rare",
     ["_hitEffectPoisonous"] = "Epic",
-    ["_hitEffectPonderingORB"] = "Epic",
+    ["_hitEffectPonderingORB"] = "Special",
     ["_hitEffectPopstarSpectacle"] = "Legendary",
     ["_hitEffectPortal"] = "Mythical",
     ["_hitEffectPortalFog"] = "Rare",
@@ -333,7 +335,7 @@ local RARITY_MAP = {
     ["_hitEffectSnowPeep"] = "Rare",
     ["_hitEffectSnowball"] = "Epic",
     ["_hitEffectSnowballFall"] = "Rare",
-    ["_hitEffectSodaDelight"] = "Rare",
+    ["_hitEffectSodaDelight"] = "Special",
     ["_hitEffectSpiderInfestation"] = "Rare",
     ["_hitEffectSpiritSurge"] = "Legendary",
     ["_hitEffectStabbingDaggers"] = "Epic",
