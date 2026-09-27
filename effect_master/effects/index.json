@@ -1,8 +1,8 @@
 {
   "Schema": 2,
   "Build": "2026-08-23-v16-route-fix",
-  "GeneratedAt": "2026-09-25",
-  "TotalEffects": 307,
+  "GeneratedAt": "2026-09-27",
+  "TotalEffects": 308,
   "Effects": {
     "_hitEffectAbyss": {
       "Category": "HitEffect",
@@ -2437,7 +2437,7 @@
     "_hitEffectWindy": {
       "Category": "HitEffect",
       "Name": "Windy",
-      "Rarity": "Rare",
+      "Rarity": "Special",
       "Path": "hit/h_6170d6b83e15ce5f879b3a340ff6fe26ea5c73b1.txt",
       "Bytes": 53568,
       "SHA256": "e9d36a7d6a75ce6176f71c578e568de67af42760cf9370d845d2429270f706a0",
@@ -2716,10 +2716,10 @@
     "_spawnEffectStarfall": {
       "Category": "SpawnEffect",
       "Name": "Starfall",
-      "Rarity": "Epic",
+      "Rarity": "Special",
       "Path": "spawn/s_4c1e4b07fdbf54450ea0dea3fa2dd30f5b0df792.txt",
-      "Bytes": 5626,
-      "SHA256": "4509f7139ba8aa823028b9ad007e64ef61e59facc7b4339b92f9811d7dd0624b",
+      "Bytes": 5625,
+      "SHA256": "0543bda662986a0e9373ca15cc8a163ad668b3d7a1de3aabe0790263e605a1a0",
       "Format": "Legacy"
     },
     "_spawnEffectStellarGlow": {
@@ -2765,6 +2765,15 @@
       "Path": "spawn/s_97b3e304fe99fae8251cc6cf0c7aeae39b891517.txt",
       "Bytes": 9332,
       "SHA256": "ec9d19dfc61a9ee4552b9ccc6a2e3a48ef36a7bbd2d3fdce1b7cfdce885e21dc",
+      "Format": "Legacy"
+    },
+    "_hitEffectOrbstruction": {
+      "Category": "HitEffect",
+      "Name": "Orbstruction",
+      "Rarity": "Special",
+      "Path": "hit/h_79888500fc22587fbc435ce72aa75732118f1cea.txt",
+      "Bytes": 56833,
+      "SHA256": "367fdd1dde9676152b77c227253b8656e6a4d7ec74746eae81d1046a8b7b97fc",
       "Format": "Legacy"
     }
   }

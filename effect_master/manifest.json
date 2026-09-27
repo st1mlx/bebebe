@@ -7,7 +7,7 @@
     "vfx_player": 16,
     "router": 4
   },
-  "EffectCount": 307,
+  "EffectCount": 308,
   "Files": {
     "effect_master/effects/hit/h_027a2b7b69d8355cb42455a827eb9be2c1fb6add.txt": {
       "Bytes": 44100,
@@ -1118,8 +1118,8 @@
       "SHA256": "7654b468a39db5e8b560c8bf7e54c1548ac1507160d51df08e45b70cb74bfeca"
     },
     "effect_master/effects/index.json": {
-      "Bytes": 98713,
-      "SHA256": "e9b8345839bb72259958394d677e187422481999286ddcc76d4cd830ad0b6eb9"
+      "Bytes": 99051,
+      "SHA256": "c525db5650cf698e5297af1af9e8bffdb83dbd2d3581762d8415db31d9588d55"
     },
     "effect_master/effects/spawn/s_072236530d541d28334530f30ef8a04a50f40d27.txt": {
       "Bytes": 14526,
@@ -1154,8 +1154,8 @@
       "SHA256": "b6fdf6b78c0ea54dc29a0815ede065255eded14c4e95bf649f1c90db885378a0"
     },
     "effect_master/effects/spawn/s_4c1e4b07fdbf54450ea0dea3fa2dd30f5b0df792.txt": {
-      "Bytes": 5626,
-      "SHA256": "4509f7139ba8aa823028b9ad007e64ef61e59facc7b4339b92f9811d7dd0624b"
+      "Bytes": 5625,
+      "SHA256": "0543bda662986a0e9373ca15cc8a163ad668b3d7a1de3aabe0790263e605a1a0"
     },
     "effect_master/effects/spawn/s_567021351c4208913123b132bb256b2403b39467.txt": {
       "Bytes": 11678,
@@ -1246,8 +1246,8 @@
       "SHA256": "f96ee3e92aa94b3367d20b832cb634e78fa8fb5de0f4b29e067a96e9f6b0b980"
     },
     "effect_master/modules/catalog.luau": {
-      "Bytes": 47802,
-      "SHA256": "054c459b849104890d2e498dc2da637ace784a62c80137338474b5ab9913f7cf"
+      "Bytes": 48510,
+      "SHA256": "e78cb5ab4c532c172bf247c7369d0c80af0cfeeace1b35bc938c2805a888fa8c"
     },
     "effect_master/modules/router.luau": {
       "Bytes": 4662,
@@ -1268,6 +1268,10 @@
     "effect_master/verify_deployment.luau": {
       "Bytes": 2648,
       "SHA256": "0d05a2c432ad44fffa6cd8154af42fe53fd0ed6acb55227e77cdeea37de18020"
+    },
+    "effect_master/effects/hit/h_79888500fc22587fbc435ce72aa75732118f1cea.txt": {
+      "Bytes": 56833,
+      "SHA256": "367fdd1dde9676152b77c227253b8656e6a4d7ec74746eae81d1046a8b7b97fc"
     }
   }
 }

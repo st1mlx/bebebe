@@ -20,6 +20,7 @@ local function isAllowedSpecialKill(id)
         or normalized:find("tung", 1, true) ~= nil
         or normalized:find("sodadelight", 1, true) ~= nil
         or normalized:find("ponderingorb", 1, true) ~= nil
+        or normalized:find("orbstruction", 1, true) ~= nil
 end
 
 local ROUTE_MARKERS = {
@@ -277,6 +278,7 @@ local RARITY_MAP = {
     ["_hitEffectOperaGXFirewall"] = "Rare",
     ["_hitEffectOperaGXShield"] = "Rare",
     ["_hitEffectOrnament"] = "Rare",
+    ["_hitEffectOrbstruction"] = "Special",
     ["_hitEffectPablosClownery"] = "Legendary",
     ["_hitEffectPainted"] = "Rare",
     ["_hitEffectPaparazzi"] = "Uncommon",
@@ -364,7 +366,7 @@ local RARITY_MAP = {
     ["_hitEffectWater"] = "Uncommon",
     ["_hitEffectWerewolfLaceration"] = "Legendary",
     ["_hitEffectWindTornado"] = "Rare",
-    ["_hitEffectWindy"] = "Rare",
+    ["_hitEffectWindy"] = "Special",
     ["_hitEffectWinterBlessed"] = "Rare",
     ["_hitEffectWitchesSpell"] = "Rare",
     ["_hitEffectWitchesTreats"] = "Uncommon",
@@ -390,7 +392,7 @@ local RARITY_MAP = {
     ["_spawnEffectRIFF"] = "Epic",
     ["_spawnEffectSnowballFall"] = "Rare",
     ["_spawnEffectStaffRave"] = "Special",
-    ["_spawnEffectStarfall"] = "Epic",
+    ["_spawnEffectStarfall"] = "Special",
     ["_spawnEffectStellarGlow"] = "Legendary",
     ["_spawnEffectTrueTone"] = "Uncommon",
     ["_spawnEffectWinterBlessed"] = "Mythical",
@@ -541,6 +543,7 @@ local EFFECT_TEXTURE_MAP = {
     ["_hitEffectOperaGXFirewall"] = "rbxassetid://12159555294",
     ["_hitEffectOperaGXShield"] = "rbxassetid://12159555294",
     ["_hitEffectOrnament"] = "rbxassetid://1053548563",
+    ["_hitEffectOrbstruction"] = "rbxassetid://12159555294",
     ["_hitEffectPablosClownery"] = "rbxassetid://9046173030",
     ["_hitEffectPainted"] = "rbxassetid://18653346227",
     ["_hitEffectPaparazzi"] = "rbxassetid://7015983157",
@@ -663,6 +666,11 @@ local EFFECT_TEXTURE_MAP = {
 
 local EXACT_EFFECT_METADATA = {
     ["_hitEffectTung"] = { Rarity = "Special", DisplayName = "Tung Tung Sahur" },
+    ["_hitEffectSodaDelight"] = { Rarity = "Special", DisplayName = "Soda Delight" },
+    ["_hitEffectPonderingORB"] = { Rarity = "Special", DisplayName = "Pondering ORB" },
+    ["_hitEffectWindy"] = { Rarity = "Special", DisplayName = "Windy" },
+    ["_hitEffectOrbstruction"] = { Rarity = "Special", DisplayName = "Orbstruction" },
+    ["_spawnEffectStarfall"] = { Rarity = "Special", DisplayName = "Starfall" },
     ["_hitEffectDemonicFireRing"] = { Rarity = "Mythical", DisplayName = "Hellfire Sigil" },
     ["_hitEffectFlamingPandemonium"] = { Rarity = "Mythical", DisplayName = "Pandecrownium" },
     ["_hitEffectBarzilBlackhole"] = { Rarity = "Mythical", DisplayName = "Barzilian Nexus" },
